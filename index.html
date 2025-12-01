@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inclusion Quest – Mission Galère Collective</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="app-header">
+    <h1>Inclusion Quest – Mission Galère Collective</h1>
+    <p class="subtitle">Plateau collaboratif 100 % écran, sans serveur ni connexion.</p>
+  </header>
+
+  <main>
+    <!-- Écran d'accueil / configuration -->
+    <section id="setup-screen" class="card">
+      <h2>Préparer la partie</h2>
+      <div class="form-row">
+        <label for="player-count">Nombre de joueurs (2 à 6) :</label>
+        <input type="number" id="player-count" min="2" max="6" value="4">
+      </div>
+      <div id="player-names" class="player-names"></div>
+      <button id="start-btn" class="primary">Démarrer la partie</button>
+    </section>
+
+    <!-- Écran principal du jeu -->
+    <section id="game-screen" class="hidden">
+      <div class="grid">
+        <div class="left-panel card">
+          <div class="turn-info">
+            <h2 id="turn-indicator">Tour de …</h2>
+            <p id="case-indicator">Case actuelle : 1 / 40</p>
+            <p id="category-indicator">Catégorie : Social</p>
+          </div>
+          <div class="board-wrapper">
+            <img src="assets/board.png" alt="Plateau de jeu" class="board-image">
+            <div id="pawn" class="pawn" title="Pion"></div>
+          </div>
+          <div class="controls">
+            <button id="roll-btn" class="primary">Lancer le dé</button>
+            <p id="last-roll" class="muted">En attente de lancer…</p>
+            <button id="next-turn" class="secondary">Tour suivant</button>
+            <button id="end-game" class="ghost">Terminer la partie</button>
+          </div>
+        </div>
+
+        <div class="right-panel">
+          <div class="card">
+            <h2>Carte Situation</h2>
+            <p id="card-category" class="muted">Catégorie actuelle : Social</p>
+            <div class="card-image-wrapper">
+              <img id="card-image" src="" alt="Carte situation" class="card-image placeholder">
+            </div>
+            <div class="controls">
+              <button id="draw-card" class="primary">Tirer une carte</button>
+              <button id="show-back" class="secondary">Voir le verso</button>
+              <button id="new-card" class="ghost">Nouvelle carte</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="timer-header">
+              <h2>Sablier (60 s)</h2>
+              <span id="timer-display" class="timer-display">60</span>
+            </div>
+            <div class="controls">
+              <button id="start-timer" class="primary">Lancer le sablier</button>
+              <button id="reset-timer" class="ghost">Réinitialiser</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <h2>Scores</h2>
+            <div class="team-scores">
+              <p><strong>Inclusion (équipe) :</strong> <span id="team-inclusion">0</span></p>
+              <p><strong>Chaos (équipe) :</strong> <span id="team-chaos">0</span></p>
+            </div>
+            <div class="controls score-buttons">
+              <button data-inclusion="2" class="primary score-btn">+2 Inclusion</button>
+              <button data-inclusion="1" class="secondary score-btn">+1 Inclusion</button>
+              <button data-inclusion="0" class="ghost score-btn">0 Inclusion</button>
+              <button data-chaos="1" class="secondary score-btn chaos">+1 Chaos</button>
+              <button data-chaos="2" class="primary score-btn chaos">+2 Chaos</button>
+            </div>
+            <table class="score-table">
+              <thead>
+                <tr>
+                  <th>Joueur</th>
+                  <th>Inclusion</th>
+                  <th>Chaos</th>
+                </tr>
+              </thead>
+              <tbody id="score-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Écran de fin de partie -->
+    <section id="summary-screen" class="hidden card">
+      <h2>Récapitulatif de partie</h2>
+      <p class="muted">Merci d'avoir joué ensemble !</p>
+      <div class="team-scores final">
+        <p><strong>Inclusion total :</strong> <span id="final-inclusion">0</span></p>
+        <p><strong>Chaos total :</strong> <span id="final-chaos">0</span></p>
+      </div>
+      <p id="final-message" class="highlight"></p>
+      <table class="score-table">
+        <thead>
+          <tr>
+            <th>Joueur</th>
+            <th>Inclusion</th>
+            <th>Chaos</th>
+          </tr>
+        </thead>
+        <tbody id="final-score-body"></tbody>
+      </table>
+      <div class="controls">
+        <button id="replay" class="primary">Rejouer avec les mêmes joueurs</button>
+        <button id="back-home" class="secondary">Retour à l'accueil</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,278 @@
+:root {
+  --blue-deep: #0b3c5d;
+  --blue-soft: #2c7fb8;
+  --mint: #c3f0ca;
+  --sand: #f4f7fb;
+  --border: #d9e2ec;
+  --text: #1b262c;
+  --muted: #5d6d7e;
+  --shadow: 0 10px 30px rgba(11, 60, 93, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: linear-gradient(135deg, #e8f4ff 0%, #f6fffb 100%);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+.app-header {
+  text-align: center;
+  padding: 2rem 1.5rem 1rem;
+  color: var(--blue-deep);
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 2rem;
+  letter-spacing: 0.4px;
+}
+
+.subtitle {
+  color: var(--muted);
+  margin-top: 0.25rem;
+}
+
+main {
+  max-width: 1200px;
+  margin: 0 auto 2rem;
+  padding: 0 1rem 2rem;
+}
+
+.card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: var(--shadow);
+  margin-bottom: 1.25rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 1.25rem;
+}
+
+.left-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.right-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.turn-info h2 {
+  margin: 0 0 0.25rem;
+  color: var(--blue-deep);
+}
+
+.turn-info p {
+  margin: 0.1rem 0;
+}
+
+.board-wrapper {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--sand);
+  border: 1px solid var(--border);
+}
+
+.board-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.pawn {
+  position: absolute;
+  top: 10%;
+  left: 8%;
+  width: 40px;
+  height: 40px;
+  background: url('assets/tokens/pawn.png') center/contain no-repeat;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+  transition: transform 0.3s ease;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+button {
+  border: none;
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+button.primary {
+  background: var(--blue-soft);
+  color: white;
+  box-shadow: 0 8px 16px rgba(44, 127, 184, 0.22);
+}
+
+button.secondary {
+  background: var(--mint);
+  color: var(--blue-deep);
+}
+
+button.ghost {
+  background: white;
+  color: var(--blue-deep);
+  border: 1px solid var(--border);
+}
+
+button.chaos {
+  background: #ffd4d4;
+  color: #7c1818;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.highlight {
+  font-weight: 700;
+  color: var(--blue-deep);
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+}
+
+input[type="number"], input[type="text"] {
+  padding: 0.65rem 0.75rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  font-size: 1rem;
+}
+
+.player-names {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.card-image-wrapper {
+  background: var(--sand);
+  border: 1px dashed var(--border);
+  border-radius: 10px;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.card-image {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.card-image.placeholder {
+  opacity: 0.5;
+}
+
+.timer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.timer-display {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--blue-soft);
+  padding: 0.35rem 0.75rem;
+  background: #eef6ff;
+  border-radius: 10px;
+}
+
+.timer-display.warning {
+  color: #b23b3b;
+  background: #ffe9e9;
+}
+
+.team-scores {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.team-scores p {
+  margin: 0.2rem 0;
+}
+
+.score-buttons {
+  gap: 0.4rem;
+}
+
+.score-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.75rem;
+}
+
+.score-table th,
+.score-table td {
+  border: 1px solid var(--border);
+  padding: 0.6rem;
+  text-align: left;
+}
+
+.score-table th {
+  background: #f1f7ff;
+  color: var(--blue-deep);
+}
+
+.score-table tr.active-player {
+  background: #e7f3ff;
+  font-weight: 600;
+}
+
+#summary-screen .team-scores {
+  margin: 1rem 0;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  button {
+    width: 100%;
+    justify-content: center;
+  }
+}
